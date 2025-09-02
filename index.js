@@ -14,14 +14,39 @@ async function renderItems(filter){
         items = await getAPI()
     }
     if (filter === 'highest-rated'){
+        items = await getAPI()
         items.sort((a,b) => b.rating.rate - a.rating.rate)
     }
     else if (filter === 'price-low-to-high'){
+        items = await getAPI()
         items.sort((a,b) => (a.price - b.price))
     }
     else if (filter === 'price-high-to-low'){
+        items = await getAPI()
         items.sort((a,b) => (b.price - a.price))
     }
+
+    else if (filter === 'electronics'){
+        items = await getAPI()
+        items = items.filter(item => item.category === "electronics")
+        console.log(items)
+    }
+    else if (filter === "men's clothing"){
+        items = await getAPI()
+        items = items.filter(item => item.category === "men's clothing")
+        console.log(items)
+    }
+    else if (filter === "women's clothing"){
+        items = await getAPI()
+        items = items.filter(item => item.category === "women's clothing")
+        console.log(items)
+    }
+    else if (filter === "jewelery"){
+        items = await getAPI()
+        items = items.filter(item => item.category === "jewelery")
+        console.log(items)
+    }
+
 
     const itemHTML = items.map((object) =>
         `<div class="item">
@@ -41,6 +66,10 @@ async function renderItems(filter){
         itemList.innerHTML = itemHTML
 }
 
+function loadingState(){
+    document.querySelector("#items").innerHTML = 'hxjdsgbvgh'
+}
+
 function ratingsHTML(rating){
     let ratingHTML = ''
     for (let i = 0; i < Math.floor(rating.rate); i++){
@@ -55,3 +84,5 @@ function ratingsHTML(rating){
 function filterItems(event){
     renderItems(event.target.value)
 }
+
+renderItems()
