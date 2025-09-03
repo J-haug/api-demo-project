@@ -52,33 +52,25 @@ async function renderCatItems(filter){
 
     if (filter === 'all'){
         items = await getAPI()
-        renderItems(filter)
-        console.log(items)
     }
     else if (filter === 'electronics'){
         items = await getAPI()
         items = items.filter(item => item.category === "electronics")
-        renderItems(filter)
-        console.log(items)
     }
     else if (filter === "men's clothing"){
         items = await getAPI()
         items = items.filter(item => item.category === "men's clothing")
-        renderItems(filter)
-        console.log(items)
     }
     else if (filter === "women's clothing"){
         items = await getAPI()
         items = items.filter(item => item.category === "women's clothing")
-        renderItems(filter)
-        console.log(items)
     }
     else if (filter === "jewelery"){
         items = await getAPI()
         items = items.filter(item => item.category === "jewelery")
-        renderItems(filter)
-        console.log(items)
     }
+    renderItems()
+
 }
 
 function loadingState(){
