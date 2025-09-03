@@ -10,53 +10,43 @@ async function getAPI() {
     
 }
 
-async function renderItems(filter){
+async function update() {
     loadingScreen.classList.add('visible')
-    if (!items){
+    items = await getAPI()
+
+    if (document.querySelector('.category__dropdown').value === 'all'){
         items = await getAPI()
     }
-    
-    if (filter === 'electronics'){
-        items = await getAPI()
+    if (document.querySelector('.category__dropdown').value === 'electronics'){
         items = items.filter(item => item.category === "electronics")
     }
-    else if (filter === "men's clothing"){
-        items = await getAPI()
+    else if (document.querySelector('.category__dropdown').value === "men's clothing"){
         items = items.filter(item => item.category === "men's clothing")
     }
-    else if (filter === "women's clothing"){
-        items = await getAPI()
+    else if (document.querySelector('.category__dropdown').value === "women's clothing"){
         items = items.filter(item => item.category === "women's clothing")
     }
-    else if (filter === "jewelery"){
-        items = await getAPI()
+    else if (document.querySelector('.category__dropdown').value === "jewelery"){
         items = items.filter(item => item.category === "jewelery")
     }
-
-
 
 
     if (document.querySelector('.filter__dropdown').value === 'highest-rated'){
        
         items.sort((a,b) => b.rating.rate - a.rating.rate)
     }
-    else if (document.querySelector('.filter__dropdown').value=== 'price-low-to-high'){
+    else if (document.querySelector('.filter__dropdown').value === 'price-low-to-high'){
         items.sort((a,b) => (a.price - b.price))
     }
-    else if (document.querySelector('.filter__dropdown').value=== 'price-high-to-low'){
+    else if (document.querySelector('.filter__dropdown').value === 'price-high-to-low'){
         items.sort((a,b) => (b.price - a.price))
         
     }
-   
+    renderItems()
+}
 
-
+function renderItems(){
     
-
-    loadingScreen.classList.remove('visible')
-
-   
-
-
     const itemHTML = items.map((object) =>
         `<div class="item">
             <figure class="item__img--wrapper">
@@ -73,15 +63,9 @@ async function renderItems(filter){
             </div>
         </div>`).join('')
         itemList.innerHTML = itemHTML
+        loadingScreen.classList.remove('visible')
 }
 
-async function renderCatItems(filter){
-    loadingScreen.classList.add('visible')
-
-
-   
-
-}
 
 
 
@@ -97,12 +81,8 @@ function ratingsHTML(rating){
 }
 
 function filterItems(event){
-    
-    renderItems(event.target.value)
+    update()
 }
 
-function categorizeItems(event){
 
-    renderCatItems(event.target.value)
-}
-renderItems()
+update()
