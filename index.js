@@ -15,17 +15,42 @@ async function renderItems(filter){
     if (!items){
         items = await getAPI()
     }
-    if (filter === 'highest-rated'){
+    
+    if (filter === 'electronics'){
+        items = await getAPI()
+        items = items.filter(item => item.category === "electronics")
+    }
+    else if (filter === "men's clothing"){
+        items = await getAPI()
+        items = items.filter(item => item.category === "men's clothing")
+    }
+    else if (filter === "women's clothing"){
+        items = await getAPI()
+        items = items.filter(item => item.category === "women's clothing")
+    }
+    else if (filter === "jewelery"){
+        items = await getAPI()
+        items = items.filter(item => item.category === "jewelery")
+    }
+
+
+
+
+    if (document.querySelector('.filter__dropdown').value === 'highest-rated'){
+       
         items.sort((a,b) => b.rating.rate - a.rating.rate)
     }
-    else if (filter === 'price-low-to-high'){
+    else if (document.querySelector('.filter__dropdown').value=== 'price-low-to-high'){
         items.sort((a,b) => (a.price - b.price))
     }
-    else if (filter === 'price-high-to-low'){
+    else if (document.querySelector('.filter__dropdown').value=== 'price-high-to-low'){
         items.sort((a,b) => (b.price - a.price))
         
     }
-    renderCatItems(filter)
+   
+
+
+    
 
     loadingScreen.classList.remove('visible')
 
@@ -54,27 +79,7 @@ async function renderCatItems(filter){
     loadingScreen.classList.add('visible')
 
 
-    if (filter === 'all'){
-        items = await getAPI()
-    }
-    else if (filter === 'electronics'){
-        items = await getAPI()
-        items = items.filter(item => item.category === "electronics")
-    }
-    else if (filter === "men's clothing"){
-        items = await getAPI()
-        items = items.filter(item => item.category === "men's clothing")
-    }
-    else if (filter === "women's clothing"){
-        items = await getAPI()
-        items = items.filter(item => item.category === "women's clothing")
-    }
-    else if (filter === "jewelery"){
-        items = await getAPI()
-        items = items.filter(item => item.category === "jewelery")
-    }
-    renderItems()
-    loadingScreen.classList.remove('visable')
+   
 
 }
 
