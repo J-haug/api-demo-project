@@ -17,7 +17,7 @@ async function update() {
     if (document.querySelector('.category__dropdown').value === 'all'){
         items = await getAPI()
     }
-    if (document.querySelector('.category__dropdown').value === 'electronics'){
+    else if (document.querySelector('.category__dropdown').value === 'electronics'){
         items = items.filter(item => item.category === "electronics")
     }
     else if (document.querySelector('.category__dropdown').value === "men's clothing"){
@@ -32,7 +32,6 @@ async function update() {
 
 
     if (document.querySelector('.filter__dropdown').value === 'highest-rated'){
-       
         items.sort((a,b) => b.rating.rate - a.rating.rate)
     }
     else if (document.querySelector('.filter__dropdown').value === 'price-low-to-high'){
