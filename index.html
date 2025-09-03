@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liberty Retail</title>
+    <title>Liberty Goods</title>
     <link rel="stylesheet" href="./style.css">
     <script src="https://kit.fontawesome.com/6a0e2f6580.js" crossorigin="anonymous"></script>
-  
+        
 </head>
 <body>
     <nav>
         <div class="row">
             <div class="nav__text--container">
-                <h1 class="nav__title" >Liberty Retail</h1>
+                <h1 class="nav__title" >Liberty Goods</h1>
                 <h2 class="nav__subtitle">Support products made in the Land of the Free</h2>
                 <div class="nav__search-bar">
                     <input class="nav__search-bar--input" type="text" placeholder="Search">
@@ -26,15 +26,18 @@
     </nav>
     <section id="items">
         <div class="container">
-            <div class="loading-screen">
+            <!-- <div class="loading-screen">
                 <i class="fa-solid fa-circle-notch"></i>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="filter__container">
                     <select class="filter__dropdown" name="filter" id="filter" onchange="filterItems(event)">
                         <option value="highest-rated">Highest Rated</option>
                         <option value="price-low-to-high">Price: Low to High</option>
                         <option value="price-high-to-low">Price: High to Low</option>
+                    </select>
+                    <select class="category__dropdown" name="category" id="category" onchange="categorizeItems(event)">
+                        <option value="all">All</option>
                         <option value="electronics">Electronics</option>
                         <option value="men's clothing">Men's Clothing</option>
                         <option value="women's clothing">Women's Clothing</option>
@@ -47,6 +50,9 @@
             </div>
         </div>
     </section>
+    <footer>
+        <h1 class="footer__title">© Liberty Goods LLC 2025</h1>
+    </footer>
 </body>
 <script src="index.js"></script>
 </html>

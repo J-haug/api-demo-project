@@ -14,38 +14,19 @@ async function renderItems(filter){
         items = await getAPI()
     }
     if (filter === 'highest-rated'){
-        items = await getAPI()
         items.sort((a,b) => b.rating.rate - a.rating.rate)
+        renderCatItems(filter)
     }
     else if (filter === 'price-low-to-high'){
-        items = await getAPI()
         items.sort((a,b) => (a.price - b.price))
+        renderCatItems(filter)
     }
     else if (filter === 'price-high-to-low'){
-        items = await getAPI()
         items.sort((a,b) => (b.price - a.price))
+        renderCatItems(filter)
     }
 
-    else if (filter === 'electronics'){
-        items = await getAPI()
-        items = items.filter(item => item.category === "electronics")
-        console.log(items)
-    }
-    else if (filter === "men's clothing"){
-        items = await getAPI()
-        items = items.filter(item => item.category === "men's clothing")
-        console.log(items)
-    }
-    else if (filter === "women's clothing"){
-        items = await getAPI()
-        items = items.filter(item => item.category === "women's clothing")
-        console.log(items)
-    }
-    else if (filter === "jewelery"){
-        items = await getAPI()
-        items = items.filter(item => item.category === "jewelery")
-        console.log(items)
-    }
+   
 
 
     const itemHTML = items.map((object) =>
@@ -64,6 +45,40 @@ async function renderItems(filter){
             </div>
         </div>`).join('')
         itemList.innerHTML = itemHTML
+}
+
+async function renderCatItems(filter){
+
+
+    if (filter === 'all'){
+        items = await getAPI()
+        renderItems(filter)
+        console.log(items)
+    }
+    else if (filter === 'electronics'){
+        items = await getAPI()
+        items = items.filter(item => item.category === "electronics")
+        renderItems(filter)
+        console.log(items)
+    }
+    else if (filter === "men's clothing"){
+        items = await getAPI()
+        items = items.filter(item => item.category === "men's clothing")
+        renderItems(filter)
+        console.log(items)
+    }
+    else if (filter === "women's clothing"){
+        items = await getAPI()
+        items = items.filter(item => item.category === "women's clothing")
+        renderItems(filter)
+        console.log(items)
+    }
+    else if (filter === "jewelery"){
+        items = await getAPI()
+        items = items.filter(item => item.category === "jewelery")
+        renderItems(filter)
+        console.log(items)
+    }
 }
 
 function loadingState(){
@@ -85,4 +100,7 @@ function filterItems(event){
     renderItems(event.target.value)
 }
 
+function categorizeItems(event){
+    renderCatItems(event.target.value)
+}
 renderItems()
