@@ -1,5 +1,6 @@
 const itemList = document.querySelector('.items__container')
 let items
+const loadingScreen = document.querySelector('.loading-screen')
 
 async function getAPI() {
     const objects = await fetch('https://fakestoreapi.com/products/')
@@ -10,21 +11,23 @@ async function getAPI() {
 }
 
 async function renderItems(filter){
+    loadingScreen.classList.add('visible')
     if (!items){
         items = await getAPI()
     }
     if (filter === 'highest-rated'){
         items.sort((a,b) => b.rating.rate - a.rating.rate)
-        renderCatItems(filter)
     }
     else if (filter === 'price-low-to-high'){
         items.sort((a,b) => (a.price - b.price))
-        renderCatItems(filter)
     }
     else if (filter === 'price-high-to-low'){
         items.sort((a,b) => (b.price - a.price))
-        renderCatItems(filter)
+        
     }
+    renderCatItems(filter)
+
+    loadingScreen.classList.remove('visible')
 
    
 
@@ -48,6 +51,7 @@ async function renderItems(filter){
 }
 
 async function renderCatItems(filter){
+    loadingScreen.classList.add('visible')
 
 
     if (filter === 'all'){
@@ -70,12 +74,11 @@ async function renderCatItems(filter){
         items = items.filter(item => item.category === "jewelery")
     }
     renderItems()
+    loadingScreen.classList.remove('visable')
 
 }
 
-function loadingState(){
-    document.querySelector("#items").innerHTML = 'hxjdsgbvgh'
-}
+
 
 function ratingsHTML(rating){
     let ratingHTML = ''
@@ -89,10 +92,12 @@ function ratingsHTML(rating){
 }
 
 function filterItems(event){
+    
     renderItems(event.target.value)
 }
 
 function categorizeItems(event){
+
     renderCatItems(event.target.value)
 }
 renderItems()

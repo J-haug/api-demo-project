@@ -217,8 +217,31 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  visibility: hidden;
 }
 
+.fa-circle-notch{
+  position: absolute;
+  left: 50%;
+  top: 30vh;
+  color: #242424;
+  font-size: 46px;
+  animation: rotate 600ms infinite linear;
+}
+
+.visible{
+  visibility: visible;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /* footer  */
 
