@@ -70,7 +70,6 @@ async function update() {
         
     }
 
-    console.log(items)
     renderItems()
     if (items.length === 0){
         noResults.classList.add('visible')
