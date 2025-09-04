@@ -295,3 +295,32 @@ footer{
     justify-content: center;
   }
 }
+
+@media(max-height: 480px){
+  nav{
+    height: 80vh;
+  }
+  .nav__img--wrapper{
+    height: 80vh;
+  }
+  .nav__img{
+    height: 100%;
+  }
+  .nav__text--container{
+    width: 100%;
+    
+  }
+  .nav__title{
+    width: 100%;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .nav__subtitle{
+    text-align: center;
+  }
+  .filter__container{
+    justify-content: center;
+  }
+  
+}
