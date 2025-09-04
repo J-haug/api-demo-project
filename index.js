@@ -4,7 +4,11 @@ let items
 
 const sortEl = document.querySelector('.filter__dropdown')
 const categoryEl = document.querySelector('.category__dropdown')
+const searchEl = document.getElementById('search')
+const searchIcon = document.querySelector('.search__button')
 const loadingScreen = document.querySelector('.loading-screen')
+const noResults = document.querySelector('.no-results')
+let query = ''
 
 async function getAPI() {
     const objects = await fetch('https://fakestoreapi.com/products/')
@@ -21,6 +25,23 @@ async function update() {
         allItems = await getAPI()
     }
     items = [...allItems]
+    noResults.classList.remove('visible')
+
+    searchEl.addEventListener('keydown',function(event){
+        if (event.key === 'Enter'){
+            query = searchEl.value.toLowerCase()
+            
+        }
+    })
+    searchIcon.addEventListener('click',function(){
+        query = searchEl.value.toLowerCase()
+    })
+    
+    
+    if (query) {
+        items = items.filter(item => item.title.toLowerCase().includes(query))
+        
+    }
 
     if (categoryEl.value !== 'all'){
         if (categoryEl.value === 'electronics'){
@@ -48,8 +69,12 @@ async function update() {
         items.sort((a,b) => (b.price - a.price))
         
     }
-    renderItems()
+
     console.log(items)
+    renderItems()
+    if (items.length === 0){
+        noResults.classList.add('visible')
+    }
 }
 
 function renderItems(){

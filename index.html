@@ -15,8 +15,11 @@
                 <h1 class="nav__title" >Liberty Goods</h1>
                 <h2 class="nav__subtitle">Support products made in the Land of the Free</h2>
                 <div class="nav__search-bar">
-                    <input class="nav__search-bar--input" type="text" placeholder="Search">
-                    <i class="nav__search-bar--icon fa-solid fa-magnifying-glass"></i>
+                    <input class="nav__search-bar--input" id="search" onchange="update()" type="text" placeholder="Search">
+                    <button class="search__button" onclick="update()">
+                        <i class="nav__search-bar--icon fa-solid fa-magnifying-glass"></i>
+
+                    </button>
                 </div>
             </div>
         </div>
@@ -43,6 +46,9 @@
                         <option value="women's clothing">Women's Clothing</option>
                         <option value="jewelery">Jewelery</option>
                     </select>
+                </div>
+                <div class="no-results">
+                    <h1 class="no-results__text">No results...</h1>
                 </div>
                 <div class="items__container">
                    
